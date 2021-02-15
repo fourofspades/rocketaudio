@@ -81,6 +81,10 @@
     </listen-socket>
     -->
 
+<emulation>
+     <icecast-status-page>1</icecast-status-page>
+</emulation>
+
 
     <!-- Global header settings 
          Headers defined here will be returned for every HTTP request to Icecast.
