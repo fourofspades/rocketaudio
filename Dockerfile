@@ -14,12 +14,10 @@ RUN apt-get update -qq
 # Install and activate necessary software
 RUN apt-get upgrade -qy && apt-get install -qy \
     apt-utils \
-    wget \
-    mailcap \
+    wget  \
     ssl-cert \
     openssl \
     unzip \
-    xz-utils \
     sudo
 
 RUN rm -rf /var/apt-cache/*
