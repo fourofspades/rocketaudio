@@ -6,10 +6,12 @@ RUN addgroup --system icecast && \
   
 RUN apk add --update \
         mailcap && \
-		wget && \
-    rm -rf /var/cache/apk/*
+		curl && \
+		openssl && \
+		ca-certificates \
+		rm -rf /var/cache/apk/*
 RUN cd /usr/bin/
-RUN wget -q https://www.rocketbroadcaster.com/streaming-audio-server/downloads/ubuntu-14.04/rsas-0.1.17-linux_amd64.tar.gz -O /usr/bin/rsas.tar.gz
+RUN curl https://www.rocketbroadcaster.com/streaming-audio-server/downloads/ubuntu-14.04/rsas-0.1.17-linux_amd64.tar.gz  | /usr/bin/rsas.tar.gz -- --quiet
 RUN tar -xvzf /usr/bin/rsas.tar.gz
 RUN rm /usr/bin/rsas.tar.gz
 
