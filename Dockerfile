@@ -29,6 +29,7 @@ RUN 	mkdir /rsas && \
 	rm /rsas/rsas.tar.gz && \
 	chmod +X /rsas/rsas
 
+COPY icecast.xml /etc/icecast.xml
 COPY docker-entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
