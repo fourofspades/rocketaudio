@@ -8,7 +8,7 @@ RUN apk add --update \
         mailcap && \
 		wget && \
     rm -rf /var/cache/apk/*
-cd /usr/bin/
+RUN cd /usr/bin/
 RUN wget -q https://www.rocketbroadcaster.com/streaming-audio-server/downloads/ubuntu-14.04/rsas-0.1.17-linux_amd64.tar.gz -O /usr/bin/rsas.tar.gz
 RUN tar -xvzf /usr/bin/rsas.tar.gz
 RUN rm /usr/bin/rsas.tar.gz
