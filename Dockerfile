@@ -1,11 +1,28 @@
-FROM alpine:latest
-LABEL maintainer "fourofspades"
+FROM ubuntu:focal
+
+# Set correct environment variables
+ENV DEBIAN_FRONTEND="noninteractive" HOME="/root" LC_ALL="C.UTF-8" LANG="en_US.UTF-8" LANGUAGE="en_US.UTF-8"
+ENV supervisor_conf /etc/supervisor/supervisord.conf
+ENV start_scripts_path /bin
+
 
 RUN addgroup --system icecast && \
     adduser --system icecast
-  
-RUN apk add --update mailcap bash wget openssl ca-certificates \
-		rm -rf /var/cache/apk/*
+
+# Update packages from baseimage
+RUN apt-get update -qq
+# Install and activate necessary software
+RUN apt-get upgrade -qy && apt-get install -qy \
+    apt-utils \
+    wget \
+    mailcap \
+    ssl-cert \
+    openssl \
+    unzip \
+    xz-utils \
+    sudo
+
+RUN rm -rf /var/apt-cache/*
 
 RUN 	mkdir /rsas && \
 	cd /rsas && \
