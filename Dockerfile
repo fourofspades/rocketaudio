@@ -4,14 +4,12 @@ LABEL maintainer "fourofspades"
 RUN addgroup --system icecast && \
     adduser --system icecast
   
-https://www.rocketbroadcaster.com/streaming-audio-server/downloads/ubuntu-20.04/rsas_0.1.17-1_amd64.deb
-  
 RUN apk add --update \
         mailcap && \
 		wget && \
     rm -rf /var/cache/apk/*
 RUN cd /usr/bin 
-RUN wget "https://www.rocketbroadcaster.com/streaming-audio-server/downloads/ubuntu-14.04/rsas-0.1.17-linux_amd64.tar.gz"
+RUN wget -q https://www.rocketbroadcaster.com/streaming-audio-server/downloads/ubuntu-14.04/rsas-0.1.17-linux_amd64.tar.gz
 RUN tar -xvzf rsas-0.1.17-linux_amd64.tar.gz
 RUN rm rsas-0.1.17-linux_amd64.tar.gz
 
