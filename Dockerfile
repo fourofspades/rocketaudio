@@ -4,11 +4,11 @@ LABEL maintainer "fourofspades"
 RUN addgroup --system icecast && \
     adduser --system icecast
   
-RUN apk add --update mailcap curl openssl ca-certificates \
+RUN apk add --update mailcap wget openssl ca-certificates \
 		rm -rf /var/cache/apk/*
 
 RUN 	cd /usr/bin/ && \
-		curl https://www.rocketbroadcaster.com/streaming-audio-server/downloads/ubuntu-14.04/rsas-0.1.17-linux_amd64.tar.gz  | /usr/bin/rsas.tar.gz -- --quiet && \
+		wget -q https://www.rocketbroadcaster.com/streaming-audio-server/downloads/ubuntu-14.04/rsas-0.1.17-linux_amd64.tar.gz  -O /usr/bin/rsas.tar.gz && \
 		tar -xvzf /usr/bin/rsas.tar.gz && \
 		rm /usr/bin/rsas.tar.gz
 
