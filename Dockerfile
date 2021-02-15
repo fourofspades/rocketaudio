@@ -35,5 +35,5 @@ RUN chmod +x /entrypoint.sh
 EXPOSE 8000
 VOLUME ["/var/log/icecast"]
 ENTRYPOINT ["/entrypoint.sh"]
-#CMD /usr/bin/rsas -c /etc/icecast.xml
-CMD /bin/bash
+CMD /usr/bin/rsas -c /etc/icecast.xml
+#CMD /bin/bash
