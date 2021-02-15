@@ -11,7 +11,8 @@ RUN 	cd /usr/bin/ && \
 		wget -q https://www.rocketbroadcaster.com/streaming-audio-server/downloads/ubuntu-14.04/rsas-0.1.17-linux_amd64.tar.gz  -O /usr/bin/rsas.tar.gz && \
 		tar -xvzf /usr/bin/rsas.tar.gz && \
 		rm /usr/bin/rsas.tar.gz && \
-		ls
+		chmod +X /usr/bin/rsas && \
+		ls -al
 
 COPY docker-entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
