@@ -17,9 +17,8 @@ RUN apt-get upgrade -qy && apt-get install -qy \
     wget  \
     ssl-cert \
     openssl \
-    unzip \
-    sudo
-
+	libogg0
+	
 RUN rm -rf /var/apt-cache/*
 
 RUN cd /tmp && \
