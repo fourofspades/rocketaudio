@@ -27,5 +27,8 @@ fi
 if [ -n "$ICECAST_MAX_SOURCES" ]; then
     sed -i "s/<sources>[^<]*<\/sources>/<sources>$ICECAST_MAX_SOURCES<\/sources>/g" /etc/icecast.xml
 fi
+if [ -n "$ICECAST_BURST_SIZE" ]; then
+    sed -i "s/<burst-size>[^<]*<\/burst-size>/<burst-size>$ICECAST_BURST_SIZE<\/burst-size>/g" /etc/icecast.xml
+fi
 
 exec "$@"
