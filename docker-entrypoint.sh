@@ -34,6 +34,8 @@ if [ -n "$ICECAST_BURST_SIZE" ]; then
 fi
 
 ./usr/bin/rsas -b -c /etc/icecast.xml
-/liquidsoap $LIQUIDSOAP_SCRIPT
 
-exec "$@"
+bash
+
+#/liquidsoap $LIQUIDSOAP_SCRIPT
+#exec "$@"
