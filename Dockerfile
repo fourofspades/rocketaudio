@@ -1,4 +1,4 @@
-FROM ocaml/opam:debian-10 as builder
+FROM phasecorex/liquidsoap:latest as builder
 
 # Set correct environment variables
 ENV DEBIAN_FRONTEND="noninteractive" HOME="/root" LC_ALL="C.UTF-8" LANG="en_US.UTF-8" LANGUAGE="en_US.UTF-8"
@@ -27,28 +27,6 @@ RUN sudo addgroup --system icecast && \
     sudo dpkg -i /tmp/rsas.deb && \
     sudo rm /tmp/rsas.deb  && \
     sudo chmod +x /entrypoint.sh
-
-#LiquidSoap
-FROM ocaml/opam:latest
-LABEL maintainer "infiniteproject@gmail.com"
-
-ENV PACKAGES="taglib mad lame vorbis cry samplerate opus fdkaac faad flac liquidsoap"
-ENV OPAMDEBUG=1
-
-RUN sudo sed -i 's/$/ non-free/' /etc/apt/sources.list; \
-    sudo apt-get update -qq  && \
-    sudo apt-get upgrade -qy && \
-    sudo apt-get install -qy \
-
-RUN opam depext $PACKAGES && \
-    opam install $PACKAGES
-
-RUN sudo apt-get clean && \
-    sudo rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-COPY docker-entrypoint.sh /entrypoint.sh
-RUN sudo chmod +x /entrypoint.sh
-
 
 EXPOSE 8000
 VOLUME ["/var/log/icecast"]
