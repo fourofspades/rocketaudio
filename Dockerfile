@@ -4,9 +4,6 @@ FROM ocaml/opam:debian-10 as builder
 ENV DEBIAN_FRONTEND="noninteractive" HOME="/root" LC_ALL="C.UTF-8" LANG="en_US.UTF-8" LANGUAGE="en_US.UTF-8"
 ENV supervisor_conf /etc/supervisor/supervisord.conf
 ENV start_scripts_path /bin
-ENV PACKAGES="taglib mad lame vorbis cry samplerate opus fdkaac faad flac liquidsoap"
-ENV OPAMDEBUG=1
-ENV PACKAGES "taglib mad lame vorbis cry liquidsoap"
 
 COPY icecast.xml /etc/icecast.xml
 COPY docker-entrypoint.sh /entrypoint.sh
@@ -34,6 +31,9 @@ RUN sudo addgroup --system icecast && \
 #LiquidSoap
 FROM ocaml/opam:latest
 LABEL maintainer "infiniteproject@gmail.com"
+
+ENV PACKAGES="taglib mad lame vorbis cry samplerate opus fdkaac faad flac liquidsoap"
+ENV OPAMDEBUG=1
 
 RUN opam depext $PACKAGES && \
     opam install $PACKAGES
