@@ -5,7 +5,12 @@ ENV DEBIAN_FRONTEND="noninteractive" HOME="/root" LC_ALL="C.UTF-8" LANG="en_US.U
 ENV supervisor_conf /etc/supervisor/supervisord.conf
 ENV start_scripts_path /bin
 
-COPY icecast.xml /etc/icecast.xml
+ARG SOURCE_PASSWORD=hackmebadly
+ARG SOURCE_USERNAME=source
+ARG MAX_CLIENTS=20
+ARG LIQUIDSOAP_SCRIPT=/myscript.liq
+
+COPY rsas.xml /etc/rsas.xml
 COPY docker-entrypoint.sh /entrypoint.sh
 
 #RocketAudioServer
@@ -31,5 +36,5 @@ RUN addgroup --system icecast && \
     chmod +x /entrypoint.sh
 
 EXPOSE 8000
-VOLUME ["/var/log/icecast"]
+VOLUME ["/var/log/rsas"]
 ENTRYPOINT ["/entrypoint.sh"]
