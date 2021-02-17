@@ -31,8 +31,8 @@ RUN sudo addgroup --system icecast && \
     sudo chmod +x /entrypoint.sh
 
 #LiquidSoap
+RUN opam install depext
 RUN set -eux; \
-    opam install depext \
     for package in $PACKAGES; do \
         opam depext --install $package; \
     done
