@@ -13,7 +13,8 @@ COPY docker-entrypoint.sh /entrypoint.sh
 RUN sudo addgroup --system icecast && \
     sudo adduser --system icecast  && \
     sudo apt-get update -qq  && \
-    sudo apt-get upgrade -qy && apt-get install -qy \
+    sudo apt-get upgrade -qy && \
+    sudo apt-get install -qy \
     apt-utils \
     wget  \
     iputils-ping \
