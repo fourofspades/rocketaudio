@@ -16,6 +16,8 @@ RUN addgroup --system icecast && \
     apt-get upgrade -qy && \
     apt-get install -qy \
     apt-utils \
+    procps \
+    nano \
     wget  \
     iputils-ping \
     net-tools \
