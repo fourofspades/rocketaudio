@@ -3,13 +3,13 @@
 uname -a
 
 if [ -n "$SOURCE_PASSWORD" ]; then
-    sed -i "s/<password>[^<]*<\/password>/<password>$ICECAST_SOURCE_PASSWORD<\/password>/g" /etc/rsas.xml
+    sed -i "s/<password>[^<]*<\/password>/<password>$SOURCE_PASSWORD<\/password>/g" /etc/rsas.xml
 fi
 if [ -n "$SOURCE_USERNAME" ]; then
-    sed -i "s/<username>[^<]*<\/username>/<username>$ICECAST_SOURCE_PASSWORD<\/username>/g" /etc/rsas.xml
+    sed -i "s/<username>[^<]*<\/username>/<username>$SOURCE_USERNAME<\/username>/g" /etc/rsas.xml
 fi
-if [ -n "$MAX_SOURCES" ]; then
-    sed -i "s/<sources>[^<]*<\/sources>/<sources>$ICECAST_MAX_SOURCES<\/sources>/g" /etc/rsas.xml
+if [ -n "$MAX_CLIENTS" ]; then
+    sed -i "s/<clients>[^<]*<\/clients>/<clients>$MAX_CLIENTS<\/clients>/g" /etc/rsas.xml
 fi
 
 ./usr/bin/rsas -b -c /etc/rsas.xml                                                                                                                   
