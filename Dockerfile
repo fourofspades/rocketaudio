@@ -35,6 +35,11 @@ LABEL maintainer "infiniteproject@gmail.com"
 ENV PACKAGES="taglib mad lame vorbis cry samplerate opus fdkaac faad flac liquidsoap"
 ENV OPAMDEBUG=1
 
+RUN sudo sed -i 's/$/ non-free/' /etc/apt/sources.list; \
+    sudo apt-get update -qq  && \
+    sudo apt-get upgrade -qy && \
+    sudo apt-get install -qy \
+
 RUN opam depext $PACKAGES && \
     opam install $PACKAGES
 
