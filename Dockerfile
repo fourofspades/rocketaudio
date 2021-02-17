@@ -5,30 +5,28 @@ ENV DEBIAN_FRONTEND="noninteractive" HOME="/root" LC_ALL="C.UTF-8" LANG="en_US.U
 ENV supervisor_conf /etc/supervisor/supervisord.conf
 ENV start_scripts_path /bin
 
-
-RUN addgroup --system icecast && \
-    adduser --system icecast
-
-# Update packages from baseimage
-RUN apt-get update -qq
-# Install and activate necessary software
-RUN apt-get upgrade -qy && apt-get install -qy \
-    apt-utils \
-    wget  \
-    ssl-cert \
-    openssl \
-	libogg0
-	
-RUN apt-get clean
-
-RUN cd /tmp && \
-	wget -q https://www.rocketbroadcaster.com/streaming-audio-server/downloads/ubuntu-20.04/rsas_0.1.17-1_amd64.deb -O /tmp/rsas.deb && \
-	dpkg -i /tmp/rsas.deb && \
-	rm /tmp/rsas.deb
-
 COPY icecast.xml /etc/icecast.xml
 COPY docker-entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+
+RUN addgroup --system icecast && \
+    adduser --system icecast  && \
+    apt-get update -qq  && \
+    apt-get upgrade -qy && apt-get install -qy \
+    apt-utils \
+    wget  \
+    iputils-ping \
+    net-tools \
+    ssl-cert \
+    openssl \
+    libogg0  && \
+    cd /tmp && \
+    wget -q https://www.rocketbroadcaster.com/streaming-audio-server/downloads/ubuntu-20.04/rsas_0.1.17-1_amd64.deb -O /tmp/rsas.deb && \
+    dpkg -i /tmp/rsas.deb && \
+    rm /tmp/rsas.deb  && \
+    chmod +x /entrypoint.sh && \ 
+    apt-get clean autoclean && \
+    apt-get autoremove --yes && \
+    rm -rf /var/lib/{apt,dpkg,cache,log}/
 
 EXPOSE 8000
 VOLUME ["/var/log/icecast"]
