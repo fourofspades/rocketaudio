@@ -28,7 +28,7 @@ RUN sudo addgroup --system icecast && \
     sudo wget -q https://www.rocketbroadcaster.com/streaming-audio-server/downloads/ubuntu-20.04/rsas_0.1.17-1_amd64.deb -O /tmp/rsas.deb && \
     sudo dpkg -i /tmp/rsas.deb && \
     sudo rm /tmp/rsas.deb  && \
-    sudo chmod +x /entrypoint.sh && \ 
+    sudo chmod +x /entrypoint.sh
 
 #LiquidSoap
 RUN set -eux; \
