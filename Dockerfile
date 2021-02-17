@@ -10,10 +10,10 @@ COPY icecast.xml /etc/icecast.xml
 COPY docker-entrypoint.sh /entrypoint.sh
 
 #RocketAudioServer
-RUN addgroup --system icecast && \
-    adduser --system icecast  && \
-    apt-get update -qq  && \
-    apt-get upgrade -qy && apt-get install -qy \
+RUN sudo addgroup --system icecast && \
+    sudo adduser --system icecast  && \
+    sudo apt-get update -qq  && \
+    sudo apt-get upgrade -qy && apt-get install -qy \
     apt-utils \
     wget  \
     iputils-ping \
@@ -22,13 +22,13 @@ RUN addgroup --system icecast && \
     openssl \
     libogg0  && \
     cd /tmp && \
-    wget -q https://www.rocketbroadcaster.com/streaming-audio-server/downloads/ubuntu-20.04/rsas_0.1.17-1_amd64.deb -O /tmp/rsas.deb && \
-    dpkg -i /tmp/rsas.deb && \
-    rm /tmp/rsas.deb  && \
-    chmod +x /entrypoint.sh && \ 
-    apt-get clean autoclean && \
-    apt-get autoremove --yes && \
-    rm -rf /var/lib/{apt,dpkg,cache,log}/
+    sudo wget -q https://www.rocketbroadcaster.com/streaming-audio-server/downloads/ubuntu-20.04/rsas_0.1.17-1_amd64.deb -O /tmp/rsas.deb && \
+    sudo dpkg -i /tmp/rsas.deb && \
+    sudo rm /tmp/rsas.deb  && \
+    sudo chmod +x /entrypoint.sh && \ 
+    sudo apt-get clean autoclean && \
+    sudo apt-get autoremove --yes && \
+    sudo rm -rf /var/lib/{apt,dpkg,cache,log}/
 
 #LiquidSoap
 RUN set -eux; \
