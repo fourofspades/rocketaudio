@@ -9,12 +9,12 @@ COPY icecast.xml /etc/icecast.xml
 COPY docker-entrypoint.sh /entrypoint.sh
 
 #RocketAudioServer
-RUN sudo addgroup --system icecast && \
-    sudo adduser --system icecast  && \
-    sudo sed -i 's/$/ non-free/' /etc/apt/sources.list; \
-    sudo apt-get update -qq  && \
-    sudo apt-get upgrade -qy && \
-    sudo apt-get install -qy \
+RUN addgroup --system icecast && \
+    adduser --system icecast  && \
+    sed -i 's/$/ non-free/' /etc/apt/sources.list; \
+    apt-get update -qq  && \
+    apt-get upgrade -qy && \
+    apt-get install -qy \
     apt-utils \
     wget  \
     iputils-ping \
@@ -23,10 +23,10 @@ RUN sudo addgroup --system icecast && \
     openssl \
     libogg0  && \
     cd /tmp && \
-    sudo wget -q https://www.rocketbroadcaster.com/streaming-audio-server/downloads/ubuntu-20.04/rsas_0.1.17-1_amd64.deb -O /tmp/rsas.deb && \
-    sudo dpkg -i /tmp/rsas.deb && \
-    sudo rm /tmp/rsas.deb  && \
-    sudo chmod +x /entrypoint.sh
+    wget -q https://www.rocketbroadcaster.com/streaming-audio-server/downloads/ubuntu-20.04/rsas_0.1.17-1_amd64.deb -O /tmp/rsas.deb && \
+    dpkg -i /tmp/rsas.deb && \
+    rm /tmp/rsas.deb  && \
+    chmod +x /entrypoint.sh
 
 EXPOSE 8000
 VOLUME ["/var/log/icecast"]
