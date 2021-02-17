@@ -6,6 +6,7 @@ ENV supervisor_conf /etc/supervisor/supervisord.conf
 ENV start_scripts_path /bin
 ENV PACKAGES="taglib mad lame vorbis cry samplerate opus fdkaac faad flac liquidsoap"
 ENV OPAMDEBUG=1
+ENV PACKAGES "taglib mad lame vorbis cry liquidsoap"
 
 COPY icecast.xml /etc/icecast.xml
 COPY docker-entrypoint.sh /entrypoint.sh
@@ -31,34 +32,17 @@ RUN sudo addgroup --system icecast && \
     sudo chmod +x /entrypoint.sh
 
 #LiquidSoap
-RUN set -eux; \
-    for package in $PACKAGES; do \
-        opam depext --install $package; \
-    done
+FROM ocaml/opam:latest
+LABEL maintainer "infiniteproject@gmail.com"
 
-RUN set -eux; \
-    eval $(opam env); \
-    mkdir -p /home/opam/root/app; \
-    mv $(command -v liquidsoap) /home/opam/root/app; \
-    opam depext --list $PACKAGES > /home/opam/root/app/depexts; \
-    mkdir -p /home/opam/root/$OPAM_SWITCH_PREFIX/lib; \
-    mv $OPAM_SWITCH_PREFIX/share /home/opam/root/$OPAM_SWITCH_PREFIX; \
-    mv $OPAM_SWITCH_PREFIX/lib/liquidsoap /home/opam/root/$OPAM_SWITCH_PREFIX/lib
+RUN opam depext $PACKAGES && \
+    opam install $PACKAGES
 
-RUN sudo apt-get clean autoclean && \
-    sudo apt-get autoremove --yes && \
-    sudo rm -rf /var/lib/{apt,dpkg,cache,log}/
+RUN sudo apt-get clean && \
+    sudo rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-FROM phasecorex/user-debian:10-slim
-
-COPY --from=builder /home/opam/root /
-
-RUN set -eux; \
-    sed -i 's/$/ non-free/' /etc/apt/sources.list; \
-    apt-get update; \
-    cat /app/depexts | xargs apt-get install -y --no-install-recommends; \
-    rm -rf /var/lib/apt/lists/*; \
-    /app/liquidsoap --version
+COPY docker-entrypoint.sh /entrypoint.sh
+RUN sudo chmod +x /entrypoint.sh
 
 
 EXPOSE 8000
