@@ -17,7 +17,7 @@ COPY docker-entrypoint.sh /entrypoint.sh
 RUN addgroup --system icecast && \
     adduser --system icecast  && \
     sed -i 's/$/ non-free/' /etc/apt/sources.list; \
-    echo deb 'http://download.opensuse.org/repositories/multimedia:/xiph/Debian_10/' >>'/etc/apt/sources.list.d/icecast.list' \
+    echo "deb http://download.opensuse.org/repositories/multimedia:/xiph/Debian_10/" >> /etc/apt/sources.list \
     apt-get update -qq  && \
     apt-get upgrade -qy && \
     apt-get install -qy \
