@@ -23,6 +23,7 @@ RUN addgroup --system icecast && \
     apt-utils \
     procps \
     nano \
+    icecast \
     wget  \
     iputils-ping \
     net-tools \
