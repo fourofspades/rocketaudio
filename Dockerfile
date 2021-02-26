@@ -11,6 +11,7 @@ ENV MAX_CLIENTS=20
 ENV LIQUIDSOAP_SCRIPT=/myscript.liq
 
 COPY rsas.xml /etc/rsas.xml
+COPY tmp/* /tmp
 COPY docker-entrypoint.sh /entrypoint.sh
 
 #RocketAudioServer
