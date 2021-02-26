@@ -14,5 +14,6 @@ fi
 
 ./usr/bin/rsas -b -c /etc/rsas.xml                                                                                                                   
                                                                                                                                                         
+bash
 /app/liquidsoap /tmp/test.lic
 exec "$@"
