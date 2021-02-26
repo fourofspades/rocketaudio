@@ -39,4 +39,5 @@ RUN addgroup --system icecast && \
 
 EXPOSE 8000
 VOLUME ["/var/log/rsas"]
-ENTRYPOINT ["/entrypoint.sh"]
+#ENTRYPOINT ["/entrypoint.sh"]
+CMD sh
