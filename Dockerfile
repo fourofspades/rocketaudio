@@ -25,6 +25,7 @@ COPY docker-entrypoint.sh /entrypoint.sh
 #RocketAudioServer
 RUN addgroup --system icecast && \
     adduser --system icecast  && \
+	mkdir /var/log/icecast2/ \
 	chown icecast:icecast /var/log/icecast2/ \
     sed -i 's/$/ non-free/' /etc/apt/sources.list; \
     apt-get update -qq  && \
