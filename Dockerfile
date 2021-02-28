@@ -39,8 +39,9 @@ RUN addgroup --system icecast && \
     ssl-cert \
     openssl \
     libogg0  && \
-    chmod +x /entrypoint.sh \
-	chown icecast:icecast /var/log/icecast2/
+	mkdir /var/log/icecast2 && \
+    chmod +x /entrypoint.sh && \
+	chown icecast:icecast /var/log/icecast2/ 
 
 EXPOSE 8000
 VOLUME ["/var/log/icecast2"]
