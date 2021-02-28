@@ -10,7 +10,7 @@ ENV SOURCE_USERNAME=source
 ENV MAX_CLIENTS=20
 ENV LIQUIDSOAP_SCRIPT=/myscript.liq
 
-COPY rsas.xml /etc/rsas.xml
+COPY icecast.xml /etc/icecast.xml
 COPY docker-entrypoint.sh /entrypoint.sh
 
 #RocketAudioServer
@@ -30,12 +30,8 @@ RUN addgroup --system icecast && \
     ssl-cert \
     openssl \
     libogg0  && \
-    cd /tmp && \
-    wget -q https://www.rocketbroadcaster.com/streaming-audio-server/downloads/debian10/rsas_0.1.17-1_amd64.deb -O /tmp/rsas.deb && \
-    dpkg -i /tmp/rsas.deb && \
-    rm /tmp/rsas.deb  && \
     chmod +x /entrypoint.sh
 
 EXPOSE 8000
-VOLUME ["/var/log/rsas"]
+VOLUME ["/var/log/icecast2"]
 ENTRYPOINT ["/entrypoint.sh"]
