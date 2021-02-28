@@ -39,7 +39,7 @@ RUN addgroup --system icecast && \
     ssl-cert \
     openssl \
     libogg0  && \
-	mkdir /var/log/icecast2 && \
+	mkdir -p /var/log/icecast2 && \
     chmod +x /entrypoint.sh && \
 	chown icecast:icecast /var/log/icecast2/ 
 
