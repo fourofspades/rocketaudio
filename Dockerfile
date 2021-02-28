@@ -40,7 +40,6 @@ RUN addgroup --system icecast && \
     openssl \
     libogg0  && \
     chmod +x /entrypoint.sh \
-	mkdir /var/log/icecast2/ \
 	chown icecast:icecast /var/log/icecast2/
 
 EXPOSE 8000
