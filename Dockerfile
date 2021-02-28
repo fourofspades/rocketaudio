@@ -5,10 +5,10 @@ ENV DEBIAN_FRONTEND="noninteractive" HOME="/root" LC_ALL="C.UTF-8" LANG="en_US.U
 ENV supervisor_conf /etc/supervisor/supervisord.conf
 ENV start_scripts_path /bin
 
-ENV SOURCE_PASSWORD=hackmebadly
-ENV SOURCE_USERNAME=source
+
 ENV MAX_CLIENTS=20
 ENV LIQUIDSOAP_SCRIPT=/myscript.liq
+ENV ICECAST_SOURCE_PASSWORD=hackmebadly
 ENV ICECAST_ADMIN_PASSWORD=hackmebadly
 ENV ICECAST_ADMIN_USERNAME=bigusdickus
 ENV ICECAST_RELAY_PASSWORD=hackmebadly
@@ -25,8 +25,6 @@ COPY docker-entrypoint.sh /entrypoint.sh
 #RocketAudioServer
 RUN addgroup --system icecast && \
     adduser --system icecast  && \
-	mkdir /var/log/icecast2/ \
-	chown icecast:icecast /var/log/icecast2/ \
     sed -i 's/$/ non-free/' /etc/apt/sources.list; \
     apt-get update -qq  && \
     apt-get upgrade -qy && \
@@ -41,7 +39,9 @@ RUN addgroup --system icecast && \
     ssl-cert \
     openssl \
     libogg0  && \
-    chmod +x /entrypoint.sh
+    chmod +x /entrypoint.sh \
+	mkdir /var/log/icecast2/ \
+	chown icecast:icecast /var/log/icecast2/
 
 EXPOSE 8000
 VOLUME ["/var/log/icecast2"]
