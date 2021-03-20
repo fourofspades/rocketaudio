@@ -32,7 +32,7 @@ RUN addgroup --system icecast && \
     openssl \
     libogg0  && \
     cd /tmp && \
-    wget -q https://www.rocketbroadcaster.com/streaming-audio-server/downloads/debian10/rsas_0.1.17-1_amd64.deb -O /tmp/rsas.deb && \
+    wget -q https://www.rocketbroadcaster.com/streaming-audio-server/downloads/debian10/rsas_0.1.18alpha16-1_amd64.deb -O /tmp/rsas.deb && \
     dpkg -i /tmp/rsas.deb && \
     rm /tmp/rsas.deb  && \
     chmod +x /entrypoint.sh
