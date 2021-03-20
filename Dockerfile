@@ -19,10 +19,11 @@ ENV ICECAST_MAX_SOURCES=2
 ENV ICECAST_BURST_SIZE=65535
 
 
-COPY icecast.xml /etc/icecast.xml
+COPY docker_etc/ /etc/
+COPY docker_usr/ /usr/
 COPY docker-entrypoint.sh /entrypoint.sh
 
-#RocketAudioServer
+#Icecast and Icecast-kh  (usr/bin and usr/local/bin)
 RUN addgroup --system icecast && \
     adduser --system icecast  && \
     sed -i 's/$/ non-free/' /etc/apt/sources.list; \
