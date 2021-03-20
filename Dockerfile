@@ -33,6 +33,7 @@ RUN addgroup --system icecast && \
     apt-utils \
     procps \
     nano \
+	libcurl4 \
     icecast2 \
     wget  \
     iputils-ping \
