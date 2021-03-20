@@ -42,6 +42,7 @@ RUN addgroup --system icecast && \
     libogg0  && \
 	mkdir -p /var/log/icecast2 && \
     chmod +x /entrypoint.sh && \
+	chmod +x /usr/local/bin/icecast && \
 	chown icecast:icecast /var/log/icecast2/ 
 
 EXPOSE 8000
