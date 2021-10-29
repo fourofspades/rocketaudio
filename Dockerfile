@@ -1,4 +1,4 @@
-FROM savonet/liquidsoap-alpine:v2.0.1 as builder
+FROM savonet/liquidsoap:v2.0.1 as builder
 
 # Set correct environment variables
 ENV DEBIAN_FRONTEND="noninteractive" HOME="/root" LC_ALL="C.UTF-8" LANG="en_US.UTF-8" LANGUAGE="en_US.UTF-8"
@@ -18,7 +18,7 @@ ENV ICECAST_HOSTNAME=localhost
 ENV ICECAST_MAX_SOURCES=2
 ENV ICECAST_BURST_SIZE=65535
 
-
+USER root
 COPY docker_etc/ /etc/
 COPY docker_usr/ /usr/
 COPY docker-entrypoint.sh /entrypoint.sh
