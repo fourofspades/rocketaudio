@@ -1,16 +1,19 @@
 # RocketAudio
-RocketAudio for Docker
+RocketAudio for Docker with LiquidSoap
 ```
 docker run -d -p 8000:8000 fourofspades/rocketaudio
 ```
 
 Uses Icecast compatability mode to set enviroment variables from the docker container.
 
-Supported ENV variables:
+Supported RSAS ENV variables:
+(Required)
+```
+SOURCE_PASSWORD, SOURCE_USERNAME,MAX_CLIENTS
 
 ```
-ICECAST_SOURCE_PASSWORD, ICECAST_ADMIN_PASSWORD, ICECAST_RELAY_PASSWORD
-ICECAST_ADMIN_USERNAME, ICECAST_ADMIN_EMAIL
-ICECAST_LOCATION, ICECAST_HOSTNAME
-ICECAST_MAX_CLIENTS, ICECAST_MAX_SOURCES
+Supported LiquidSoap variables:
+(Required)
+```
+LIQUIDSOAP_SCRIPT
 ```
