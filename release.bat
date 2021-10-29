@@ -1,0 +1,1 @@
+docker push -t mgillespie/liquidsoap_icecast_kh:latest
