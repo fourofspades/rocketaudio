@@ -33,8 +33,6 @@ if [ -n "$ICECAST_BURST_SIZE" ]; then
     sed -i "s/<burst-size>[^<]*<\/burst-size>/<burst-size>$ICECAST_BURST_SIZE<\/burst-size>/g" /etc/icecast.xml
 fi
 
-./usr/local/bin/icecast -b -c /etc/icecast.xml  
-#./usr/bin/icecast2 -b -c /etc/icecast.xml                                                                                                                   
-                                                                                                                                                        
-/app/liquidsoap $LIQUIDSOAP_SCRIPT  
+./usr/local/bin/icecast -b -c /etc/icecast.xml                                                                                                                 
+/usr/bin/liquidsoap $LIQUIDSOAP_SCRIPT  
 exec "$@"
