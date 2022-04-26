@@ -1,4 +1,4 @@
-FROM savonet/liquidsoap:v2.0.3 as builder
+FROM savonet/liquidsoap:v2.0.4 as builder
 
 # Set correct environment variables
 ENV DEBIAN_FRONTEND="noninteractive" HOME="/root" LC_ALL="C.UTF-8" LANG="en_US.UTF-8" LANGUAGE="en_US.UTF-8"
