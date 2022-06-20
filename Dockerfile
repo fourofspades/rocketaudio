@@ -32,6 +32,7 @@ RUN addgroup --system icecast && \
     apt-get install -qy \
     apt-utils \
     procps \
+	libssl1.1 \
     nano \
 	libcurl4 \
     icecast2 \
